@@ -12,9 +12,17 @@
 */
 
 Route::get('/', function () {
+
     return view('welcome');
+
+//    Route::get('/{locale}', function ($locale) {
+//        \App::setlocale($locale);
+//        // DataBase
+//        // users = Email , password , .. etc .. lan (ar)
+//        return view('welcome');
+
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/dashboard', 'DashboardController@index')->name('dashboard');

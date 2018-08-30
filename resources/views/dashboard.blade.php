@@ -2,8 +2,13 @@
 
 @section('content')
 <div class="container">
+
+
     <div class="row justify-content-center">
+<div class="display-3">@lang('interface.texts.welcome',['name'=> \Auth::user()->name])</div>
         <div class="col-md-8">
+
+<h2> </h2>
             <div class="card">
                 <div class="card-header">Dashboard</div>
 
