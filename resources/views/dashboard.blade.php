@@ -14,6 +14,9 @@
                 <div class="card-body">
                     <a class="btn btn-success" href="{{route('posts.create')}}">{{__('Create Posts')}}</a>
                     <hr>
+
+
+                    {{--we can add All massage in file one ..--}}
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
@@ -45,6 +48,12 @@
                 </div>
                 <div class="card bg-dark-footer">
                     <a class="btn btn-success" href="{{route('posts.edit', $post->id)}}">{{__('Edit Post')}}</a>
+                    <form action="{{route('posts.destroy', $post->id)}}" method="post">
+                        {{method_field ('DELETE')}}
+                        {{csrf_field ()}}
+                        <button  onclick="return confirm({{__('Are you sure to delete this item?')}})" class="btn btn-danger" type="submit">{{__('Delete Post')}}</button>
+
+                    </form>
 
                 </div>
             </div>

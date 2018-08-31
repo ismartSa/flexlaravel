@@ -94,7 +94,14 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Post $post)
+
     {
-        //
+       $delete = $post->delete ();
+
+       if($delete)
+           return redirect('dashboard')->with('status', 'Will Deleted  Post !');
+       else
+           return redirect('dashboard')->with('errors', 'Error on Deleted   Post !');
+
     }
 }
