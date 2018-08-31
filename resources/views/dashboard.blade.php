@@ -20,11 +20,19 @@
                         </div>
                     @endif
 
+                    @if (session('errors'))
+                        <div class="alert alert-danger" role="alert">
+                            {{ session('errors') }}
+                        </div>
+                    @endif
+
+
                     You are logged in!
                 </div>
             </div>
         </div>
     </div>
+    <br />
     <div class="row justify">
         @foreach($userPost as $post)
         <div class="col-md-4">
@@ -34,13 +42,13 @@
                 <div class="card-body">
                     {{$post->post_massage}}
 
-
                 </div>
                 <div class="card bg-dark-footer">
                     <a class="btn btn-success" href="{{route('posts.edit', $post->id)}}">{{__('Edit Post')}}</a>
 
                 </div>
             </div>
+        <br />
         </div>
         @endforeach
     </div>

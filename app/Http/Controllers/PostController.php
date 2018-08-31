@@ -65,8 +65,10 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Post $post)
+
     {
-        //
+
+        return view('posts.edit',compact ('post'));
     }
 
     /**
@@ -78,7 +80,11 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $update = $post->update($request->all());
+        if($update)
+            return redirect('dashboard')->with('status', 'Will Update Post !');
+        else
+            return redirect('dashboard')->with('errors', 'Error on update  Post !');
     }
 
     /**
