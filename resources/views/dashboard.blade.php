@@ -5,9 +5,15 @@
 
 
     <div class="row justify-content-center">
-<div class="display-4">@lang('interface.texts.welcome',['name'=> \Auth::user()->name])</div>
+
         <div class="col-md-8">
 
+            <div class="display-7 align-items-center">
+                @lang('interface.texts.welcome',['name'=> \Auth::user()->name])
+            </div>
+
+             @include('includes.massage')
+            <br />
             <div class="card">
                 <div class="card-header">Dashboard</div>
 
@@ -16,18 +22,6 @@
                     <hr>
 
 
-                    {{--we can add All massage in file one ..--}}
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    @if (session('errors'))
-                        <div class="alert alert-danger" role="alert">
-                            {{ session('errors') }}
-                        </div>
-                    @endif
 
 
                     You are logged in!
@@ -36,6 +30,9 @@
         </div>
     </div>
     <br />
+    <div class="display-4">
+        {{__('All Posts ')}}
+    </div>
     <div class="row justify">
         @foreach($userPost as $post)
         <div class="col-md-4">
@@ -51,7 +48,7 @@
                     <form action="{{route('posts.destroy', $post->id)}}" method="post">
                         {{method_field ('DELETE')}}
                         {{csrf_field ()}}
-                        <button  onclick="return confirm({{__('Are you sure to delete this item?')}})" class="btn btn-danger" type="submit">{{__('Delete Post')}}</button>
+                        <button  onclick="return confirm('{{__('Are you sure to delete this item?')}}')" class="btn btn-danger" type="submit">{{__('Delete Post')}}</button>
 
                     </form>
 
@@ -61,5 +58,43 @@
         </div>
         @endforeach
     </div>
+
+    @if(count($userTrashedPosts))
+        <div class="display-4">
+            {{__('Delete Posts ')}}
+        </div>
+    <div class="row justify">
+
+        @foreach($userTrashedPosts as $post)
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">{{$post->subject}}</div>
+
+                <div class="card-body">
+                    {{$post->post_massage}}
+
+                </div>
+                <div class="card bg-dark-footer">
+                    <a class="btn btn-success" href="{{route('posts.edit', $post->id)}}">{{__('Edit Post')}}</a>
+                    <form action="{{route('posts.destroy', $post->id)}}" method="post">
+                        {{method_field ('DELETE')}}
+                        {{csrf_field ()}}
+                        <button  onclick="return confirm('{{__('Are you sure to delete this item?')}}')" class="btn btn-danger" type="submit">{{__('Delete Post')}}</button>
+
+                    </form>
+
+                </div>
+            </div>
+        <br />
+        </div>
+        @endforeach
+    </div>
+        @else
+        <div class="alert alert-info" role="alert">
+            {{__('No Posts Deleted , try again !!  ')}}
+        </div>
+
+      @endif
+
 </div>
 @endsection

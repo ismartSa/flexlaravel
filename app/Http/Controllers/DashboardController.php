@@ -26,6 +26,7 @@ class DashboardController extends Controller
 
     {
         $userPost =Auth::user()->posts;
-        return view('dashboard',compact('userPost'));
+        $userTrashedPosts =Auth::user()->posts()->onlyTrashed()->get();
+        return view('dashboard',compact('userPost', 'userTrashedPosts'));
     }
 }
