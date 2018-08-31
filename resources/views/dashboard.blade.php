@@ -58,7 +58,7 @@
         </div>
         @endforeach
     </div>
-
+   {{--for delete --}}
     @if(count($userTrashedPosts))
         <div class="display-4">
             {{__('Delete Posts ')}}
