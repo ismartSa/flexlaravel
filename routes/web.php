@@ -29,3 +29,4 @@ Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
 Route::resource('posts', 'PostController');
 Route::put('/posts/{post}/restore', 'PostController@restore')->name('posts.restore');
+Route::delete('/posts/{post}/force-delete', 'PostController@forceDelete')->name('posts.force-delete');

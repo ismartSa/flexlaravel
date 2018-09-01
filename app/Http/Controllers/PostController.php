@@ -115,6 +115,19 @@ class PostController extends Controller
         else
             return redirect('dashboard')->with('errors', 'Error on  Restore  Post !');
 
+    }
+    public function  forceDelete($post)
+    {
+        $post = Post::withTrashed()->find($post)->forceDelete();
+
+        if($post)
+
+            return redirect('dashboard')->with('status', 'Will ForceDelete the Post !');
+        else
+            return redirect('dashboard')->with('errors', 'Error on  ForceDelete  Post !');
+
 
     }
+
+
 }

@@ -82,10 +82,10 @@
                         <button  onclick="return confirm('{{__('Are you sure to restore this item?')}}')" class="btn btn-dark" type="submit">{{__('Restore Post')}}</button>
 
                     </form>
-                    <form action="{{route('posts.destroy', $post->id)}}" method="post">
+                    <form action="{{route('posts.force-delete', $post->id)}}" method="post">
                         {{method_field ('DELETE')}}
                         {{csrf_field ()}}
-                        <button  onclick="return confirm('{{__('Are you sure to delete this item?')}}')" class="btn btn-danger" type="submit">{{__('Delete Post')}}</button>
+                        <button  onclick="return confirm('{{__('Are you sure ?')}}')" class="btn btn-danger" type="submit">{{__('force-delete Post')}}</button>
 
                     </form>
 
