@@ -28,3 +28,4 @@ Auth::routes();
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
 Route::resource('posts', 'PostController');
+Route::put('/posts/{post}/restore', 'PostController@restore')->name('posts.restore');

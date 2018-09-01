@@ -75,7 +75,13 @@
 
                 </div>
                 <div class="card bg-dark-footer">
-                    <a class="btn btn-success" href="{{route('posts.edit', $post->id)}}">{{__('Edit Post')}}</a>
+
+                    <form action="{{route('posts.restore', $post->id)}}" method="post">
+                        {{method_field ('PUT')}}
+                        {{csrf_field ()}}
+                        <button  onclick="return confirm('{{__('Are you sure to restore this item?')}}')" class="btn btn-dark" type="submit">{{__('Restore Post')}}</button>
+
+                    </form>
                     <form action="{{route('posts.destroy', $post->id)}}" method="post">
                         {{method_field ('DELETE')}}
                         {{csrf_field ()}}

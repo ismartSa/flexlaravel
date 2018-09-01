@@ -67,7 +67,9 @@ class PostController extends Controller
     public function edit(Post $post)
 
     {
+       // anther way to restore post
 
+        // $post = Post::withTrashed()->find($post);
         return view('posts.edit',compact ('post'));
     }
 
@@ -102,6 +104,17 @@ class PostController extends Controller
            return redirect('dashboard')->with('status', 'Will Deleted  Post !');
        else
            return redirect('dashboard')->with('errors', 'Error on Deleted   Post !');
+
+    }
+
+    public function  restore($post)
+    {
+        $post = Post::withTrashed()->find($post)->restore();
+        if($post)
+            return redirect('dashboard')->with('status', 'Will Restored   Post !');
+        else
+            return redirect('dashboard')->with('errors', 'Error on  Restore  Post !');
+
 
     }
 }

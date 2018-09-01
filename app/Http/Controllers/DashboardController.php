@@ -25,8 +25,8 @@ class DashboardController extends Controller
     public function index()
 
     {
-        $userPost =Auth::user()->posts;
-        $userTrashedPosts =Auth::user()->posts()->onlyTrashed()->get();
+        $userPost =Auth::user()->posts; // delete_at == Null
+        $userTrashedPosts =Auth::user()->posts()->onlyTrashed()->get(); //delete_at != null
         return view('dashboard',compact('userPost', 'userTrashedPosts'));
     }
 }
