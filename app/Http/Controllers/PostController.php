@@ -9,6 +9,15 @@ use App\Http\Controllers\Redirect;
 
 class PostController extends Controller
 {
+
+
+    public function __construct()
+    {
+        $this->middleware('auth')->except ('index');
+        $this->middleware('checkSingUpDate')->except ('index');
+
+    }
+
     /**
      * Display a listing of the resource.
      *
